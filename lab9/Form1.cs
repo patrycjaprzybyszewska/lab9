@@ -9,6 +9,11 @@ namespace lab9
     public partial class Form1 : Form
     {
         public int nralbm = 11;
+        public string Imie;
+        public int semestr;
+        public int rok;
+        public string kierunek;
+        public string stopien;
         private string connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\patpr\source\repos\lab9\lab9\Database1.mdf;Integrated Security = True";
         public Form1()
         {
@@ -25,11 +30,16 @@ namespace lab9
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                int i = 5;
-                string query = "INSERT INTO [Table] (Id, Numer_Albumu) VALUES (@i, @Id)";
+                int i = 8;
+                string query = "INSERT INTO [Table] (Id, Numer_Albumu, Imie_Nazwisko, Semestr, Rok, Kierunek, Stopieñ) VALUES (@i, @Id, @imie, @sem, @rok, @kier, @stop)";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Id", nralbm);
                 command.Parameters.AddWithValue("@i", i);
+                command.Parameters.AddWithValue("@imie", Imie);
+                command.Parameters.AddWithValue("@sem", semestr);
+                command.Parameters.AddWithValue("@rok", rok);
+                command.Parameters.AddWithValue("@kier", kierunek);
+                command.Parameters.AddWithValue("@stop", stopien);
                 connection.Open();
                 int rowsAffected = command.ExecuteNonQuery();
                 i++;
@@ -56,5 +66,38 @@ namespace lab9
         {
 
         }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            Imie = textBox2.Text;
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            semestr = int.Parse(textBox3.Text);
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            rok = int.Parse(textBox4.Text);
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            kierunek = textBox5.Text;
+
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+            stopien = textBox6.Text;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+
