@@ -8,7 +8,7 @@ namespace lab9
 {
     public partial class Form1 : Form
     {
-        public int nralbm = 11;
+        public int nralbm = 12;
         public string Imie;
         public int semestr;
         public int rok;
